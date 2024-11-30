@@ -3,245 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claude MCP Exploration Journal</title>
+    <title>Claude MCP Journal</title>
     <style>
-        /* Modern Variables */
         :root {
-            --primary-color: #2D3250;
-            --secondary-color: #424769;
-            --accent-color: #7077A1;
+            --primary-color: #000000;
+            --accent-color: #FF4D4D;
             --text-color: #333;
-            --background-light: #f6f8fa;
-            --card-background: #fff;
-            --spacing-unit: 2rem;
+            --background: #ffffff;
+            --spacing: 2rem;
         }
 
-        /* Base Styles */
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--background-light);
+            background: var(--background);
             color: var(--text-color);
         }
 
-        /* Header Styles */
-        .header {
-            background-color: var(--primary-color);
+        .nav {
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        .logo-circle {
+            width: 2rem;
+            height: 2rem;
+            background: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: white;
-            padding: var(--spacing-unit) 5%;
-            text-align: center;
+            font-weight: bold;
         }
 
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        .nav-links {
+            display: flex;
+            gap: 2rem;
         }
 
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
         }
 
-        /* Main Content */
-        .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: var(--spacing-unit) 5%;
+        .hero {
+            padding: var(--spacing) 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
         }
 
-        /* Journal Entry */
-        .journal-entry {
-            background: var(--card-background);
-            border-radius: 12px;
-            padding: var(--spacing-unit);
-            margin-bottom: var(--spacing-unit);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        .hero h1 {
+            font-size: 8rem;
+            line-height: 1;
+            margin: 0;
+            font-weight: 900;
         }
 
-        .entry-header {
-            border-bottom: 2px solid var(--background-light);
-            margin-bottom: var(--spacing-unit);
-            padding-bottom: 1rem;
+        .hero-images {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 200px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        .entries {
+            padding: var(--spacing) 5%;
+        }
+
+        .entry-link {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid #eee;
+            text-decoration: none;
+            color: var(--primary-color);
         }
 
         .entry-date {
             color: var(--accent-color);
-            font-weight: 600;
+            font-weight: 500;
+            min-width: 100px;
         }
 
         .entry-title {
-            font-size: 1.8rem;
-            margin: 0.5rem 0;
-            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin: 0;
+            font-weight: 700;
+            line-height: 1.2;
         }
 
-        .entry-content {
-            font-size: 1.1rem;
-        }
-
-        /* Timeline Steps */
-        .timeline-steps {
-            margin: 2rem 0;
-            padding-left: 2rem;
-            border-left: 2px solid var(--accent-color);
-        }
-
-        .timeline-step {
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        .timeline-step:before {
-            content: '';
-            width: 12px;
-            height: 12px;
-            background: var(--accent-color);
-            border-radius: 50%;
-            position: absolute;
-            left: -2.6rem;
-            top: 0.5rem;
-        }
-
-        /* Images */
-        .screenshot {
-            max-width: 100%;
-            border-radius: 8px;
-            margin: 1rem 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        /* Code Blocks */
-        .code-block {
-            background: var(--background-light);
-            padding: 1rem;
-            border-radius: 6px;
-            font-family: 'Fira Code', monospace;
-            overflow-x: auto;
-        }
-
-        /* Tags */
-        .tags {
+        .author {
+            margin: 3rem 0;
             display: flex;
-            gap: 0.5rem;
-            margin: 1rem 0;
+            align-items: center;
+            gap: 1rem;
         }
 
-        .tag {
-            background: var(--accent-color);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
+        .author-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #f0f0f0;
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: var(--spacing-unit);
-            background: var(--primary-color);
-            color: white;
-            margin-top: 3rem;
+        .author-info h3 {
+            margin: 0;
+            font-size: 1.2rem;
         }
 
-        /* Responsive Design */
+        .author-info p {
+            margin: 0.5rem 0 0;
+            color: #666;
+        }
+
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
+            .hero h1 {
+                font-size: 4rem;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
             }
 
             .entry-title {
-                font-size: 1.5rem;
-            }
-
-            .main-content {
-                padding: var(--spacing-unit) 1rem;
+                font-size: 1.8rem;
             }
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <h1>Claude MCP Exploration Journal</h1>
-        <p>Documenting my journey exploring Claude's Multi-Context Processing capabilities and experiments</p>
-    </header>
+    <nav class="nav">
+        <a href="/" class="logo">
+            <div class="logo-circle">C</div>
+            <span>CLAUDE JOURNAL</span>
+        </a>
+        <div class="nav-links">
+            <a href="/entries">ENTRIES</a>
+            <a href="/about">ABOUT</a>
+            <a href="/experiments">EXPERIMENTS</a>
+        </div>
+    </nav>
 
-    <main class="main-content">
-        <article class="journal-entry">
-            <header class="entry-header">
-                <span class="entry-date">November 30, 2024</span>
-                <h2 class="entry-title">Getting Started: Creating a GitHub Pages Site with Claude</h2>
-                <div class="tags">
-                    <span class="tag">GitHub Pages</span>
-                    <span class="tag">HTML/CSS</span>
-                    <span class="tag">Automation</span>
-                </div>
-            </header>
+    <section class="hero">
+        <h1>CLAUDE<br>JOURNAL</h1>
+        <div class="hero-images">
+            <img src="/api/placeholder/400/400" alt="Code visualization" class="hero-image">
+            <img src="/api/placeholder/400/400" alt="AI interaction" class="hero-image">
+            <img src="/api/placeholder/400/400" alt="Data analysis" class="hero-image">
+            <img src="/api/placeholder/400/400" alt="Project result" class="hero-image">
+        </div>
+    </section>
 
-            <div class="entry-content">
-                <p>Today marked my first deep dive into using Claude's capabilities to create and manage a GitHub Pages site. The journey involved several key steps and learning moments.</p>
-
-                <div class="timeline-steps">
-                    <div class="timeline-step">
-                        <h3>Initial Repository Setup</h3>
-                        <p>Started by creating a new repository called 'josh-simple-page' and setting up the basic HTML structure. Claude helped generate a clean, modern layout with responsive design principles.</p>
-                    </div>
-
-                    <div class="timeline-step">
-                        <h3>Adding Styling and Features</h3>
-                        <p>Enhanced the page with CSS styling, including:</p>
-                        <ul>
-                            <li>Responsive grid layout for feature cards</li>
-                            <li>Modern color scheme with blue accents</li>
-                            <li>Card-based design with subtle shadows</li>
-                        </ul>
-                    </div>
-
-                    <div class="timeline-step">
-                        <h3>GitHub Pages Deployment</h3>
-                        <p>Encountered and resolved several challenges:</p>
-                        <ul>
-                            <li>Initial deployment issues with private repository settings</li>
-                            <li>Workflow configuration through GitHub Actions</li>
-                            <li>Successfully deployed to GitHub Pages</li>
-                        </ul>
-                    </div>
-
-                    <div class="timeline-step">
-                        <h3>Key Learnings</h3>
-                        <p>Throughout this process, I learned several important aspects of working with Claude MCP:</p>
-                        <ul>
-                            <li>Claude can effectively manage GitHub operations through API calls</li>
-                            <li>The importance of proper repository visibility settings</li>
-                            <li>How to troubleshoot deployment issues with Claude's guidance</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <h3>Code Snippets and Configuration</h3>
-                <div class="code-block">
-                    <pre>name: Deploy static content to Pages
-on:
-  push:
-    branches: ['main']
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write</pre>
-                </div>
-
-                <p>This initial entry documents the foundation of what will become a comprehensive journal of Claude MCP experiments and discoveries.</p>
+    <div class="entries">
+        <div class="author">
+            <img src="/api/placeholder/200/200" alt="Author" class="author-image">
+            <div class="author-info">
+                <h3>by Josh Cork</h3>
+                <p>EXPLORING CLAUDE'S CAPABILITIES</p>
             </div>
-        </article>
-    </main>
+        </div>
 
-    <footer>
-        <p>© 2024 Claude MCP Exploration Journal</p>
-    </footer>
+        <a href="/entries/github-pages" class="entry-link">
+            <span class="entry-date">11.30.24</span>
+            <h2 class="entry-title">CREATING A GITHUB PAGES SITE WITH CLAUDE'S HELP</h2>
+        </a>
+
+        <a href="/entries/upcoming" class="entry-link">
+            <span class="entry-date">11.30.24</span>
+            <h2 class="entry-title">REDESIGNING THE JOURNAL WITH EDITORIAL INSPIRATION</h2>
+        </a>
+
+        <a href="/entries/future" class="entry-link">
+            <span class="entry-date">11.30.24</span>
+            <h2 class="entry-title">EXPLORING MCP'S DATA ANALYSIS CAPABILITIES</h2>
+        </a>
+    </div>
 </body>
 </html>
